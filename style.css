@@ -1,0 +1,320 @@
+:root {
+  --bg: #12161d;
+  --panel: #1b212a;
+  --panel-line: #2f3947;
+  --gold: #d9a35c;
+  --teal: #4a7fa3;
+  --terracotta: #a15c46;
+  --text: #e6e4dc;
+  --text-muted: #7c8794;
+  --red-soft: #b2554a;
+  --green-soft: #6a9c78;
+}
+
+*{ 
+  box-sizing: border-box; 
+}
+
+body{
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'DM Sans', sans-serif;
+  min-height: 100vh;
+  padding: 48px 24px 80px;
+}
+
+.wrap{
+  max-width: 1080px;
+  margin: 0 auto;
+}
+
+header.page-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  gap: 12px;
+  border-bottom: 1px solid var(--panel-line);
+  padding-bottom: 20px;
+  margin-bottom: 40px;
+}
+
+ header.page-head h1 {
+  font-family: 'DM Serif Display', serif;
+  font-weight: 400;
+  font-size: clamp(24px, 3.4vw, 36px);
+  margin: 0;
+  letter-spacing: 0.3px;
+}
+
+  header.page-head .subtitle {
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    color: var(--text-muted);
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+  }
+
+  .stage {
+    display: grid;
+    grid-template-columns: minmax(280px, 400px) 1fr;
+    gap: 40px;
+    align-items: start;
+  }
+
+  .controls-col {
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+  }
+
+  .control-block {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .control-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+
+  .chip-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .option-chip {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    padding: 9px 14px;
+    border-radius: 10px;
+    border: 1px solid var(--panel-line);
+    background: var(--panel);
+    color: var(--text-muted);
+    cursor: pointer;
+    transition: all 0.15s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2px;
+    line-height: 1.2;
+  }
+
+  .option-sub {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: var(--text-muted);
+    opacity: 0.75;
+  }
+
+  .option-chip:hover { 
+    border-color: var(--gold); 
+    color: var(--text); 
+  }
+
+  .option-chip.active {
+    background: var(--teal);
+    border-color: var(--teal);
+    color: #0c211f;
+  }
+
+  .option-chip.active .option-sub { 
+    color: #0c211f; 
+    opacity: 0.7; 
+  }
+
+  .preset-block {
+    margin-top: 4px;
+    padding-top: 18px;
+    border-top: 1px solid var(--panel-line);
+  }
+
+  .preset-chip {
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.5px;
+    padding: 9px 16px;
+    border-radius: 999px;
+    border: 1px solid var(--panel-line);
+    background: transparent;
+    color: var(--text-muted);
+    cursor: pointer;
+    transition: all 0.15s ease;
+  }
+
+  .preset-chip:hover { 
+    border-color: var(--gold); 
+    color: var(--text); 
+  }
+
+  .preset-chip.active {
+    background: var(--terracotta);
+    border-color: var(--terracotta);
+    color: #241108;
+  }
+
+  .rotation-label {
+    display: flex;
+    justify-content: space-between;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 1px;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+
+  .rotation-label .value { color: var(--teal); }
+
+  input[type="range"] {
+    width: 100%;
+    height: 2px;
+    background: var(--panel-line);
+    border-radius: 2px;
+  }
+
+  input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: var(--teal);
+    cursor: pointer;
+    box-shadow: 0 0 0 4px rgba(79,166,160,0.15);
+  }
+
+  .readout {
+    background: var(--panel);
+    border: 1px solid var(--panel-line);
+    border-radius: 10px;
+    padding: 30px 32px;
+  }
+
+  .readout-kicker {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin: 0 0 20px;
+  }
+
+  .field-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px 24px;
+  }
+
+  .field {
+    border-top: 1px solid var(--panel-line);
+    padding-top: 8px;
+  }
+
+  .field .label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    display: block;
+    margin-bottom: 6px;
+  }
+
+  .field .value {
+    font-size: 14px;
+    color: var(--text);
+  }
+
+  .tag {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 999px;
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.4px;
+  }
+
+  .energy-high, .transport-limited { 
+    background: rgba(196,98,61,0.18); 
+    color: var(--terracotta); 
+  }
+  .energy-moderate, .transport-moderate { 
+    background: rgba(201,161,107,0.18); 
+    color: var(--gold); 
+  }
+  .energy-low, .transport-extensive { 
+    background: rgba(79,166,160,0.18); 
+    color: var(--teal); 
+  }
+
+  .reservoir-good { 
+    background: rgba(90,156,106,0.18);
+     color: var(--green-soft); 
+    }
+  .reservoir-moderate { 
+    background: rgba(201,161,107,0.18); 
+    color: var(--gold); 
+  }
+  .reservoir-poor { 
+    background: rgba(178,90,79,0.18); 
+    color: var(--red-soft); 
+  }
+
+  .divider {
+    height: 1px;
+    background: var(--panel-line);
+    margin: 26px 0 22px;
+  }
+
+  .settings-title {
+    font-family: 'DM Serif Display', serif;
+    font-weight: 400;
+    font-size: 19px;
+    margin: 0 0 14px;
+  }
+
+  .settings-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 18px;
+  }
+
+  .setting-pill {
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    padding: 7px 14px;
+    border-radius: 999px;
+    border: 1px solid var(--gold);
+    color: var(--gold);
+    background: rgba(201,161,107,0.08);
+  }
+
+  .readout .desc{
+    font-size: 14px;
+    line-height: 1.65;
+    color: var(--text);
+    opacity: 0.85;
+    margin: 0 0 12px;
+  }
+
+  .reservoir-note {
+    opacity: 0.7;
+    font-style: italic;
+  }
+
+  footer.note {
+    margin-top: 48px;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--text-muted);
+    letter-spacing: 0.5px;
+    text-align: center;
+    line-height: 1.6;
+  }
