@@ -90,3 +90,103 @@ function likelyEnvironments(energy, transport, sorting, roundness) {
     reasoning: 'Low energy conditions with limited reworking suggest a quiet, distal setting, though the sorting/roundness combination is somewhat ambiguous.',
   };
 }
+function DepositionalInterpreter() {
+  const [grainSize, setGrainSize] = useState('medium');
+  const [sorting, setSorting] = useState('moderate');
+  const [roundness, setRoundness] = useState('subangular');
+  const [porosityType, setPorosityType] = useState('intergranular_open');
+  const [porosityPct, setPorosityPct] = useState(12);
+
+  function manualSet(setter, value) {
+    setter(value);
+  }
+
+  const energy = useMemo(() => energyLevel(grainSize, sorting), [grainSize, sorting]);
+  const transport = useMemo(() => transportDistance(roundness, sorting), [roundness, sorting]);
+  const reservoir = useMemo(() => reservoirQuality(porosityType, porosityPct), [porosityType, porosityPct]);
+  const outcome = useMemo(() => likelyEnvironments(energy, transport, sorting, roundness), [energy, transport, sorting, roundness]);
+
+  return (
+    <div className="wrap">
+      <header className="page-head">
+        <div>
+          <h1>Sediment Interpreter</h1>
+        </div>
+      </header>
+
+      <div className="stage">
+        <div className="controls-col">
+          <div className="control-block">
+            <div className="control-label">Grain size</div>
+            <div className="chip-group">
+              {GRAIN_SIZES.map(g => (
+                <button
+                  key={g.id}
+                  className={`option-chip ${grainSize === g.id ? 'active' : ''}`}
+                  onClick={() => manualSet(setGrainSize, g.id)}
+                >
+                  {g.label}<span className="option-sub">{g.range}</span>
+                </button>
+              ))}
+            </div>
+          </div>
+
+          <div className="control-block">
+            <div className="control-label">Sorting</div>
+            <div className="chip-group">
+              {SORTING.map(s => (
+                <button
+                  key={s.id}
+                  className={`option-chip ${sorting === s.id ? 'active' : ''}`}
+                  onClick={() => manualSet(setSorting, s.id)}
+                >{s.label}</button>
+              ))}
+            </div>
+          </div>
+
+          <div className="control-block">
+            <div className="control-label">Grain roundness</div>
+            <div className="chip-group">
+              {ROUNDNESS.map(r => (
+                <button
+                  key={r.id}
+                  className={`option-chip ${roundness === r.id ? 'active' : ''}`}
+                  onClick={() => manualSet(setRoundness, r.id)}
+                >{r.label}</button>
+              ))}
+            </div>
+          </div>
+
+          <div className="control-block">
+            <div className="control-label">Porosity type</div>
+            <div className="chip-group">
+              {POROSITY_TYPES.map(p => (
+                <button
+                  key={p.id}
+                  className={`option-chip ${porosityType === p.id ? 'active' : ''}`}
+                  onClick={() => manualSet(setPorosityType, p.id)}
+                >{p.label}</button>
+              ))}
+            </div>
+          </div>
+
+          <div className="control-block">
+            <div className="rotation-label">
+              <span>Estimated porosity</span>
+              <span className="value">{porosityPct}%</span>
+            </div>
+            <input
+              type="range"
+              min="0"
+              max="30"
+              value={porosityPct}
+              onChange={e => manualSet(setPorosityPct, Number(e.target.value))}
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById('app')).render(<DepositionalInterpreter />);
