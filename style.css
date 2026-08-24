@@ -21,7 +21,7 @@ body{
   color: var(--text);
   font-family: 'DM Sans', sans-serif;
   min-height: 100vh;
-  padding: 48px 24px 80px;
+  padding: clamp(20px, 6vw, 48px) clamp(14px, 4vw, 24px) clamp(40px, 8vw, 80px);
 }
 
 .wrap{
@@ -36,8 +36,8 @@ header.page-head {
   flex-wrap: wrap;
   gap: 12px;
   border-bottom: 1px solid var(--panel-line);
-  padding-bottom: 20px;
-  margin-bottom: 40px;
+  padding-bottom: 16px;
+  margin-bottom: clamp(24px, 6vw, 40px);
 }
 
  header.page-head h1 {
@@ -59,9 +59,14 @@ header.page-head {
   .stage {
     display: grid;
     grid-template-columns: minmax(280px, 400px) 1fr;
-    gap: 40px;
+    gap: clamp(24px, 4vw, 40px);
     align-items: start;
   }
+
+  @media (max-width: 900px) {
+    .stage { grid-template-columns: 1fr; }
+  }
+
 
   .controls-col {
     display: flex;
@@ -104,6 +109,10 @@ header.page-head {
     align-items: flex-start;
     gap: 2px;
     line-height: 1.2;
+    min-height: 44px;
+    justify-content: center;
+    flex: 1 1 auto;
+    -webkit-tap-highlight-color: transparent;
   }
 
   .option-sub {
@@ -193,7 +202,7 @@ header.page-head {
     background: var(--panel);
     border: 1px solid var(--panel-line);
     border-radius: 10px;
-    padding: 30px 32px;
+    padding: clamp(20px, 5vw, 30px) clamp(18px, 5vw, 32px);
   }
 
   .readout-kicker {
@@ -209,6 +218,10 @@ header.page-head {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 16px 24px;
+  }
+
+  @media (max-width: 420px) {
+    .field-grid { grid-template-columns: 1fr; gap: 14px; }
   }
 
   .field {
@@ -296,7 +309,7 @@ header.page-head {
     background: rgba(201,161,107,0.08);
   }
 
-  .readout .desc{
+  .readout .desc {
     font-size: 14px;
     line-height: 1.65;
     color: var(--text);
@@ -310,11 +323,53 @@ header.page-head {
   }
 
   footer.note {
-    margin-top: 48px;
+    margin-top: clamp(28px, 6vw, 48px);
     font-family: 'DM Mono', monospace;
     font-size: 11px;
     color: var(--text-muted);
     letter-spacing: 0.5px;
     text-align: center;
     line-height: 1.6;
+    padding: 0 4px;
+  }
+
+  @media (max-width: 600px) {
+    header.page-head {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    header.page-head .subtitle {
+      font-size: 10.5px;
+      letter-spacing: 1.2px;
+    }
+
+    .chip-group { gap: 6px; }
+
+    .option-chip {
+      font-size: 12.5px;
+      padding: 9px 12px;
+    }
+
+    .settings-list { gap: 6px; }
+
+    .setting-pill {
+      font-size: 11px;
+      padding: 6px 12px;
+    }
+
+  .field .value { font-size: 13px; }
+
+    .settings-title { font-size: 17px; }
+  }
+
+  @media (max-width: 380px) {
+    .chip-group {
+      flex-direction: column;
+    }
+
+    .option-chip {
+      width: 100%;
+      align-items: flex-start;
+    }
   }
